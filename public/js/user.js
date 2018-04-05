@@ -9,7 +9,56 @@ axx.gedoc =
         body: "El sistema GeDoc le permite tirar turnos con solamente un par de clicks",
         url: "http://10.64.65.200/gedoc"
 
-};
+    };
+
+axx.siged =
+    {
+        title: "SiGeD",
+        body: "explicación",
+        url: "http://10.64.65.200/gedoc"
+    };
+
+axx.mesadeentrada =
+    {
+        title: "Mesa de Entrada",
+        body: "explicación",
+        url: "http://10.64.65.200/gedoc"
+    };
+
+axx.nutricion =
+    {
+        title: "Nutrición",
+        body: "explicación",
+        url: "http://10.64.65.200/gedoc"
+    };
+
+axx.regprof =
+    {
+        title: "Registro de profesionales",
+        body: "explicación",
+        url: "http://10.64.65.200/gedoc"
+    };
+
+axx.otrs =
+    {
+        title: "O.T.R.S.",
+        body: "explicación",
+        url: "http://10.64.65.200/gedoc"
+    };
+
+axx.permisosinternet =
+    {
+        title: "Solicitud de permisos especiales de internet",
+        body: "explicación",
+        url: "http://10.64.65.200/gedoc"
+    };
+axx.gmail =
+    {
+        title: "Gmail",
+        body: "explicación",
+        url: "http://10.64.65.200/gedoc"
+    };
+
 
 const noticias = [
     {
@@ -56,7 +105,44 @@ $.fn.extend({
     },
 });
 
+var customers;
+var tipo;
+
+$.ajax({
+    url: 'getdata',
+    dataType: 'json',
+    success: function(data){
+
+        customers = data.customers;
+        tipo = data.tipo;
+
+        fillSelects();
+    }
+
+});
+
+function fillSelects(){
+
+    customers.unshift('Seleccione una opción...');
+
+    //console.dir(customers)
+    $('#customer').select2({
+        data: customers
+    });
+
+    tipo.unshift('Seleccione una opción...');
+    $('#tipo').select2({
+        data: tipo
+    });
+
+}
+
 $(function(){
+
+    $("#enviar").submit(function(){
+
+        console.log("hola carola");
+    });
 
     $(".axx").click(function(){
 
@@ -129,4 +215,3 @@ function openModal(selector){
 
     $("#detailModal").modal('show');
 }
-

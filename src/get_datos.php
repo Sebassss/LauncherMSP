@@ -13,10 +13,11 @@ require_once  "../class/class.conexion.php";
 function getData(){
 
     $db = new MYSQL();
-    //$consulta = $db->Consulta("SELECT * FROM customer_user");
 
-    //$consulta = $db->Consulta("select * from ticket_type");
+    $consultaCustomers = $db->Consulta("SELECT login as customer FROM customer_user");
 
+
+/*
     $consulta = $db->Consulta("select t.tn as NTicket, \n".
         "		   date_format(t.create_time,'%d/%m/%Y %H:%i:%s') as Fecha_Hora,\n".
         "			 ta.a_subject as Asunto, \n".
@@ -27,18 +28,32 @@ function getData(){
         "	inner join ticket_state ts on ts.id = t.ticket_state_id\n".
         "where (ts.`name` = 'Nuevo' or ts.`name` = 'Abierto.') and  \n".
         "			 date_format(t.create_time, '%Y') = date_format(DATE(NOW()),'%Y') AND\n".
-        "			 t.queue_id < 19 or t.queue_id > 37");
+        "			 t.queue_id < 19 or t.queue_id > 37");*/
 
     $x=0;
-    $respuesta=  array();
+    $customers=  array();
 
-    while($row = $db->fetch_array($consulta))
+    while($row = $db->fetch_array($consultaCustomers))
     {
-        $respuesta[$x] = $row;
+        $customers[$x] = $row['customer'];
         $x++;
     }
 
-    return json_encode($respuesta);
+    $consultaTipos = $db->Consulta("select name as tipo from ticket_type");
+
+    $x=0;
+    $tipos =  array();
+
+    while($row = $db->fetch_array($consultaTipos))
+    {
+        $tipos[$x] = $row['tipo'];
+        $x++;
+    }
+
+    return json_encode(array(
+        'customers' => $customers,
+        'tipo' => $tipos
+    ));
 }
 
 
