@@ -11,6 +11,50 @@ axx.gedoc =
 
 };
 
+const noticias = [
+    {
+        titulo: "Primer título",
+        texto: "primer texto de prueba",
+        url: "google.com"
+    },
+    {
+        titulo: "Segundo título",
+        texto: "segundo texto"
+    }
+];
+
+//contador de noticias
+var contadorNoticias = 0;
+//intervalo de cambio de noticia
+var intervalo = setInterval(proximaNoticia, 8000);
+
+//animate.css
+$.fn.extend({
+    animateCss: function(animationName, callback) {
+        var animationEnd = (function(el) {
+            var animations = {
+                animation: 'animationend',
+                OAnimation: 'oAnimationEnd',
+                MozAnimation: 'mozAnimationEnd',
+                WebkitAnimation: 'webkitAnimationEnd',
+            };
+
+            for (var t in animations) {
+                if (el.style[t] !== undefined) {
+                    return animations[t];
+                }
+            }
+        })(document.createElement('div'));
+
+        this.addClass('animated ' + animationName).one(animationEnd, function() {
+            $(this).removeClass('animated ' + animationName);
+
+            if (typeof callback === 'function') callback();
+        });
+
+        return this;
+    },
+});
 
 $(function(){
 
@@ -19,9 +63,53 @@ $(function(){
         //$("#detailModal").modal('show');
         openModal($(this));
     });
+
+    //agregar a favoritos
+    $("#book").click(function(){
+        AddToFavorite("gedoc.com","El sistema de turnos caídos");
+    });
+
 });
 
+//carga de noticias
+function proximaNoticia(){
 
+    $("#noticias").animateCss('fadeOutUp',function () {
+
+        $("#titulonoticia").text(noticias[contadorNoticias].titulo);
+        $("#textonoticia").text(noticias[contadorNoticias].texto);
+
+        $("#noticias").animateCss('fadeInDown', function () {
+
+        });
+
+    });
+
+
+    contadorNoticias ++;
+
+    if(contadorNoticias === noticias.length) contadorNoticias = 0;
+
+}
+
+//https://helloacm.com/add-to-favorite-using-javascript/
+var AddToFavorite = function(url, title) {
+    var ua = navigator.userAgent.toLowerCase();
+    if (ua.indexOf("msie 8") > -1) {
+        external.AddToFavoritesBar(url, title, '');
+    } else {
+        try {
+            window.external.addFavorite(url, title);
+        } catch (e) {
+            try {
+                window.sidebar.addPanel(title, url, '');
+            } catch (e) {
+                alert("Por favor, presione Ctrl+D para agregar a favoritos");
+            }
+        }
+    }
+    return false;
+};
 
 function openModal(selector){
 

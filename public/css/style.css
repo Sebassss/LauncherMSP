@@ -2,7 +2,8 @@ body {
     background-color: #e0e0e0;
 }
 .mainbannerrow {
-   /* background-color: blue;*/
+   background-color: #6d2e2e !important;
+
 }
 
 .mainbanner {
@@ -10,11 +11,14 @@ body {
     height: 50px;
 }
 
-.secundario {
-    padding: 10px;
-    background-color: white;
+.table td{
+    border-top: 0px !important;
 }
-
+.secundario {
+    color: white;
+    padding: 20px;
+    background-color: #803838;
+}
 .card-1 {
     box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
     transition: all 0.3s cubic-bezier(.25,.8,.25,1);
@@ -46,7 +50,7 @@ body {
 }
 
 .esqueleto {
-    border: none !important;
+   /* border: none !important;*/
 }
 
 .footer {
@@ -54,7 +58,23 @@ body {
     left: 0;
     bottom: 0;
     width: 100%;
-    background-color: red;
+    background-color: rgba(109,46,46,0.9);
     color: white;
     text-align: center;
+}
+/*estilo de accesos directos*/
+.notcontainer {
+    position: relative;
+    max-width: 800px; /* Maximum width */
+    margin: 0 auto; /* Center it */
+}
+
+.notcontainer .notcontent {
+    position: absolute; /* Position the background text */
+    bottom: 0; /* At the bottom. Use top:0 to append it to the top */
+    background: rgba(0, 0, 0, 0.5); /* Black background with 0.5 opacity */
+    color: #FFFFFF; /* Grey text */
+    width: 100%; /* Full width */
+    padding: 0px; /* Some padding */
+    height: 50px;
 }
