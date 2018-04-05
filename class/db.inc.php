@@ -1,11 +1,11 @@
 <?php
 
-define ('DATABASE_NAME' , 'LauncherMSP');
+define ('DATABASE_NAME' , 'otrs');
 
 define ('DATABASE_HOST', '10.64.65.200');
 
-define ('DATABASE_USER', 'LauncherMSP_User');
+define ('DATABASE_USER', 'launcher');
 
-define ('DATABASE_PASS', 'nautilus');
+define ('DATABASE_PASS', 'launcher');
 
 ?>
