@@ -259,7 +259,7 @@ function enviarTicket(){
 
     $.ajax({
         url: 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456',
-        dataType: 'json',
+        dataType: 'jsonp',
         type: 'POST',
         crossDomain: true,
         success: function(data){
