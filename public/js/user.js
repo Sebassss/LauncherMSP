@@ -251,9 +251,10 @@ function enviarTicket(){
                         "ContentType":"text/plain; charset=utf8",
                         "Subject": "Reclamo desde Launcher - Teléfono: " + $("#telefono").val(),
                         "Body": $("#comentario").val()
-                    }
-            }
-        };
+                    },
+            };
+
+
 
     console.dir(data2send)
 
