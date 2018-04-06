@@ -261,7 +261,7 @@ function enviarTicket(){
         dataType: 'json',
         contentType: 'application/json',
         type: 'POST',
-        data: {Article: data2send.Article, Ticket: data2send.Ticket},
+        data: data2send,
         success: function(data){
             console.log("ANDÓ!");
             console.log(data);
