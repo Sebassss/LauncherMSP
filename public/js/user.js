@@ -241,17 +241,17 @@ function enviarTicket(){
         {"Ticket": {
             "QueueID": "38",
             "PriorityID": "3",
-            "CustomerUser": $("#customer").select2("data")[0].text,
-            "Title": "Mensaje desde launcher de: " + $("#nombre").val(),
+            "CustomerUser":"\"" +  $("#customer").select2("data")[0].text + "\"",
+            "Title": "Mensaje desde launcher de: " + $("#nombre").val() + "\"",
             "StateID": "1",
-            "Type": $("#tipo").select2("data")[0].text,
+            "Type": "\"" + $("#tipo").select2("data")[0].text + "\""
         },
                 "Article":
                     {
                         "ContentType":"text/plain; charset=utf8",
-                        "Subject": "Reclamo desde Launcher - Teléfono: " + $("#telefono").val(),
-                        "Body": $("#comentario").val()
-                    },
+                        "Subject": "Reclamo desde Launcher - Teléfono: " + $("#telefono").val() + "\"",
+                        "Body": "\"" + $("#comentario").val() + "\""
+                    }
             };
 
 
@@ -260,7 +260,7 @@ function enviarTicket(){
 
     $.ajax({
         url: 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456',
-        dataType: 'json',
+        dataType: 'jsonp',
         type: 'POST',
         data: data2send,
         success: function(data){
