@@ -260,7 +260,7 @@ function enviarTicket(){
         url: 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456',
         dataType: 'json',
         type: 'POST',
-        data: $.parseJSON(JSON.stringify(data2send)),
+        data: {Article: data2send.Article, Ticket: data2send.Ticket},
         success: function(data){
             console.log("ANDÓ!");
             console.log(data);
