@@ -57,6 +57,38 @@ function getData(){
 }
 
 
+
+function getTickets(){
+
+    $db = new MYSQL();
+
+
+
+    $consulta = $db->Consulta( "select t.tn as nticket,\n".
+        "							 tp.name as prioridad,\n".
+        "        		   date_format(t.create_time,'%d/%m/%Y %H:%i:%s') as fechahora,\n".
+        "							 (select ta.a_from from article ta where ta.ticket_id = t.id limit 0,1) as oficina, \n".
+        "							 (select ta.a_subject from article ta where ta.ticket_id = t.id limit 0,1) as motivo,\n".
+        "							 (select ta.a_body from article ta where ta.ticket_id = t.id limit 0,1) as detalle\n".
+        "        			  from ticket t \n".
+        "        	inner join ticket_state ts on ts.id = t.ticket_state_id\n".
+        "			    inner join ticket_priority tp on tp.id = t.ticket_priority_id\n".
+        "        where (ts.name = 'Nuevo' or ts.name = 'Abierto.') and  \n".
+        "        			 date_format(t.create_time, '%Y') = date_format(DATE(NOW()),'%Y') AND\n".
+        "        			 t.queue_id < 19 or t.queue_id > 37 order by t.create_time, t.ticket_priority_id ");
+
+    $x=0;
+    $result=  array();
+
+    while($row = $db->fetch_array($consulta))
+    {
+        $result[$x] = $row;
+        $x++;
+    }
+
+
+    return json_encode($result);
+}
 /*
 http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?
 UserLogin=LauncherMSP&Password=123456

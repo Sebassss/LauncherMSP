@@ -22,3 +22,19 @@ $app->get('/getdata', function (Request $request, Response $response, array $arg
 
     return $DATA;
 });
+
+
+$app->get('/tickets', function (Request $request, Response $response, array $args) {
+    // Sample log message
+    //$this->logger->info("Slim-Skeleton '/' route");
+
+    // Render index view
+    return $this->renderer->render($response, 'ticketlist.phtml', $args);
+});
+
+$app->get('/getTickets', function (Request $request, Response $response, array $args){
+
+    $DATA = getTickets();
+
+    return $DATA;
+});
