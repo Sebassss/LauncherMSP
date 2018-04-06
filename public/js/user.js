@@ -256,13 +256,14 @@ function enviarTicket(){
 
 
 
-    console.dir(String.parse( data2send) )
+    console.dir(data2send)
+    console.dir(JSON.parse(data2send) )
 
     $.ajax({
         url: 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456',
         dataType: 'json',
         type: 'POST',
-        data: data2send,
+        data: $.parseJSON(JSON.stringify(data2send)),
         success: function(data){
             console.log("ANDÓ!");
             console.log(data);
