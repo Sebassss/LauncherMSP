@@ -89,19 +89,3 @@ function getTickets(){
 
     return json_encode($result);
 }
-/*
-http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?
-UserLogin=LauncherMSP&Password=123456
-
-{"Ticket":
- {
-  "QueueID":"38",
-  "PriorityID":"3",
-  "CustomerUser":"MSP_COMPRAS",
-  "Title":"REST Create Test",
-  "StateID":"1",
-  "Type":"Otro"},
- "Article":{"ContentType":"text/plain; charset=utf8","Subject":"Rest Create Test","Body":"This is
-only a test"}
-}
-*/

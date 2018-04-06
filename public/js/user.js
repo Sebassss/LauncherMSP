@@ -108,6 +108,7 @@ $.fn.extend({
 var customers;
 var tipo;
 
+//busca valores iniciales de los selectores
 $.ajax({
     url: 'getdata',
     dataType: 'json',
@@ -139,9 +140,8 @@ function fillSelects(){
 
 $(function(){
 
-    $("#enviar").submit(function(){
-
-        console.log("hola carola");
+    $("#enviar").click(function(){
+        verificar();
     });
 
     $(".axx").click(function(){
@@ -156,6 +156,122 @@ $(function(){
     });
 
 });
+
+function verificar(){
+
+    var flag = true;
+    var error = [];
+
+    if( $("#nombre").val() === "" ) {
+        flag = false;
+        error.push('Nombre completo');
+    }
+
+    if( $("#telefono").val() === "" ){
+        flag = false;
+        error.push("Teléfono interno o personal");
+    }
+
+    if($("#customer").select2('data')[0].text === "Seleccione una opción..."){
+        flag = false;
+        error.push("Lugar desde donde hace el reclamo");
+    }
+
+    if($("#tipo").select2('data')[0].text === "Seleccione una opción..."){
+        flag = false;
+        error.push("Tipo de problema a reportar");
+    }
+
+    if($("#comentario").val() === ""){
+        flag = false;
+        error.push("Comentario");
+    }
+
+    if(!flag){
+
+        $(".modal-title")
+            .empty()
+            .append("Por favor, complete correctamente los siguientes campos:");
+
+        var htmlString = '<ul>';
+
+        error.forEach(function(element){
+
+            htmlString +=
+                '<li>' +
+                element +
+                '</li>';
+        });
+
+        htmlString += '</ul>';
+
+        $(".modal-body")
+            .empty()
+            .append(htmlString);
+
+        $("#detailModal").modal('show');
+
+    }else{
+
+        enviarTicket()
+    }
+
+}
+
+/*
+ http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?
+ UserLogin=LauncherMSP&Password=123456
+
+ {"Ticket":
+ {
+ "QueueID":"38",
+ "PriorityID":"3",
+ "CustomerUser":"MSP_COMPRAS",
+ "Title":"REST Create Test",
+ "StateID":"1",
+ "Type":"Otro"},
+ "Article":{"ContentType":"text/plain; charset=utf8","Subject":"Rest Create Test","Body":"This is
+ only a test"}
+ }
+ */
+//envío de tickets
+function enviarTicket(){
+
+    var data2send =
+        {"Ticket":
+            {
+                QueueID: '38',
+                PriorityID: '3',
+                CustomerUser: $("#customer").select2('data')[0].text,
+                Title: "Mensaje desde launcher de: " + $("#nombre").val(),
+                StateID: '1',
+                Type: $("#tipo").select2('data')[0].text,
+                Article:
+                    {
+                        ContentType:"text/plain; charset=utf8",
+                        Subject: 'Reclamo desde Launcher - Teléfono: ' + $("#telefono").val(),
+                        Body: $("#comentario").val()
+                    }
+            }
+        };
+
+
+    $.ajax({
+        url: 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456',
+        dataType: 'json',
+        type: 'POST',
+        crossDomain: true,
+        success: function(data){
+            console.log("ANDÓ!");
+            console.log(data);
+        },
+        error: function(e){
+            console.log(e);
+        },
+        timeout: 12000
+
+    });
+}
 
 //carga de noticias
 function proximaNoticia(){

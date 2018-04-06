@@ -1,3 +1,6 @@
+<?php
+header('Access-Control-Allow-Origin: *');
+?>
 <!doctype html>
 <html lang="es">
 <head>
@@ -123,11 +126,11 @@
 
     <div class="row card-2 secundario">
         <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 ">
-            <form>
+            <form onsubmit="return false;">
                 <div class="form-group">
                     <br>
-                    <label for="exampleFormControlInput4">Nombre:</label>
-                    <input type="text" class="form-control" id="exampleFormControlInput4" placeholder="nombre completo" required>
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" class="form-control" id="nombre" placeholder="nombre completo"  data-toggle="tooltip" data-placement="top" title="Tooltip on top">
                 </div>
                 <div class="form-group">
                     <label for="customer">Lugar:</label>
@@ -135,8 +138,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlInput5">Teléfono:</label>
-                    <input type="number" class="form-control" id="exampleFormControlInput5" placeholder="número de teléfono personal o interno" required>
+                    <label for="telefono">Teléfono:</label>
+                    <input type="number" class="form-control" id="telefono" placeholder="número de teléfono personal o interno" >
                 </div>
                 <div class="form-group">
                     <label for="tipo">Seleccione tipo de problema:</label>
@@ -144,8 +147,8 @@
                     </select>
                 </div>
                 <div class="form-group">
-                    <label for="exampleFormControlTextarea1">Explique brevemente su problema:</label>
-                    <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" maxlength="240" required></textarea>
+                    <label for="comentario">Explique brevemente su problema:</label>
+                    <textarea class="form-control" id="comentario" rows="3" maxlength="240" ></textarea>
                 </div>
                 <div class="form-group">
                     <button id="enviar" class="btn btn-block btn-success">Enviar</button>
@@ -188,6 +191,7 @@
 </body>
 
 <script src="js/bootstrap.js"></script>
+<script src="js/popper.js"></script>
 <script src="js/select2.js"></script>
 
 </html>

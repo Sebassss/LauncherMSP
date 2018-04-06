@@ -18,7 +18,8 @@
         "monolog/monolog": "^1.17",
         "twbs/bootstrap": "^4.0",
         "components/jquery": "^3.3",
-        "select2/select2": "^4.0"
+        "select2/select2": "^4.0",
+        "heimrichhannot/popper.js": "^1.12"
     },
     "require-dev": {
         "phpunit/phpunit": ">=4.8 < 6.0"

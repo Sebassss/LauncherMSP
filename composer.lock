@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "a0c0a37c33095d1454f4976acb35482c",
+    "content-hash": "fd4ff00a656465c68d0ae0db59a7c4ad",
     "packages": [
         {
             "name": "components/jquery",
@@ -78,6 +78,108 @@
             "description": "Promoting the interoperability of container objects (DIC, SL, etc.)",
             "homepage": "https://github.com/container-interop/container-interop",
             "time": "2017-02-14T19:40:03+00:00"
+        },
+        {
+            "name": "contao-components/installer",
+            "version": "1.2.7",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/contao-components/installer.git",
+                "reference": "2b6d311363f03da0b91eeb559cfdf399058e6e03"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/contao-components/installer/zipball/2b6d311363f03da0b91eeb559cfdf399058e6e03",
+                "reference": "2b6d311363f03da0b91eeb559cfdf399058e6e03",
+                "shasum": ""
+            },
+            "require": {
+                "composer-plugin-api": "^1.0",
+                "php": "^5.6|^7.0"
+            },
+            "require-dev": {
+                "composer/composer": "^1.0",
+                "friendsofphp/php-cs-fixer": "^2.6",
+                "phpunit/phpunit": "^5.7.26",
+                "satooshi/php-coveralls": "^1.0"
+            },
+            "type": "composer-plugin",
+            "extra": {
+                "class": "Contao\\ComponentsInstaller\\Composer\\Plugin"
+            },
+            "autoload": {
+                "psr-4": {
+                    "Contao\\ComponentsInstaller\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "LGPL-3.0-or-later"
+            ],
+            "authors": [
+                {
+                    "name": "Leo Feyer",
+                    "homepage": "https://github.com/leofeyer"
+                }
+            ],
+            "description": "Contao components installer",
+            "time": "2018-02-27T21:06:59+00:00"
+        },
+        {
+            "name": "heimrichhannot/popper.js",
+            "version": "v1.12.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/heimrichhannot/popper.js.git",
+                "reference": "d2df487bdb16196e538a8cbfb05d396dbfc3f73f"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/heimrichhannot/popper.js/zipball/d2df487bdb16196e538a8cbfb05d396dbfc3f73f",
+                "reference": "d2df487bdb16196e538a8cbfb05d396dbfc3f73f",
+                "shasum": ""
+            },
+            "require": {
+                "contao-components/installer": "^1.0.9"
+            },
+            "type": "contao-component",
+            "extra": {
+                "component": {
+                    "scripts": [
+                        "dist/*.js"
+                    ],
+                    "files": [
+                        "dist/*.js",
+                        "dist/*.map"
+                    ],
+                    "shim": {
+                        "deps": [
+                            "jquery"
+                        ]
+                    }
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "FezVrasta"
+                }
+            ],
+            "description": "A kickass library to manage your poppers",
+            "homepage": "https://popper.js.org",
+            "keywords": [
+                "css",
+                "framework",
+                "front-end",
+                "less",
+                "mobile-first",
+                "responsive",
+                "web"
+            ],
+            "time": "2017-10-27T08:36:04+00:00"
         },
         {
             "name": "kriswallsmith/assetic",
