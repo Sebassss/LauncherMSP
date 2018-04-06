@@ -245,12 +245,10 @@ function enviarTicket(){
             "Title": "Mensaje desde launcher de: " + $("#nombre").val(),
             "StateID": "1",
             "Type": $("#tipo").select2("data")[0].text
-        },
-                "Article":
-                    {
-                        "ContentType":"text/plain; charset=utf8",
-                        "Subject": "Reclamo desde Launcher - Teléfono: " + $("#telefono").val(),
-                        "Body": $("#comentario").val()
+        },"Article":
+                    {"ContentType":"text/plain; charset=utf8",
+                     "Subject": "Reclamo desde Launcher - Teléfono: " + $("#telefono").val(),
+                     "Body": $("#comentario").val()
                     }
             };
 
