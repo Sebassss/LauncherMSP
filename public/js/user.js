@@ -238,14 +238,14 @@ function verificar(){
 function enviarTicket(){
 
     var data2send =
-        {"Ticket":
-            {
-                "QueueID": "38",
-                "PriorityID": "3",
-                "CustomerUser": $("#customer").select2("data")[0].text,
-                "Title": "Mensaje desde launcher de: " + $("#nombre").val(),
-                "StateID": "1",
-                "Type": $("#tipo").select2("data")[0].text,
+        {"Ticket": {
+            "QueueID": "38",
+            "PriorityID": "3",
+            "CustomerUser": $("#customer").select2("data")[0].text,
+            "Title": "Mensaje desde launcher de: " + $("#nombre").val(),
+            "StateID": "1",
+            "Type": $("#tipo").select2("data")[0].text,
+        },
                 "Article":
                     {
                         "ContentType":"text/plain; charset=utf8",
