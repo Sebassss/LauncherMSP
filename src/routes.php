@@ -9,6 +9,18 @@ include 'get_datos.php';
 
 // Routes
 
+$app->options('/{routes:.+}', function ($request, $response, $args) {
+    return $response;
+});
+
+$app->add(function ($req, $res, $next) {
+    $response = $next($req, $res);
+    return $response
+        ->withHeader('Access-Control-Allow-Origin', 'http://10.64.65.200')
+        ->withHeader('Access-Control-Allow-Headers', 'X-Requested-With, Content-Type, Accept, Origin, Authorization')
+        ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
+});
+
 $app->get('/', function (Request $request, Response $response, array $args) {
     // Sample log message
     //$this->logger->info("Slim-Skeleton '/' route");
