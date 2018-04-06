@@ -14,10 +14,9 @@
     <script src="js/bootstrap-table.min.js"></script>
 </head>
 <body>
-<div class="container container-fluid">
+<div class="container-fluid">
 
-    <div class="row">
-        <table class="display table table-bordered" id="clienti">
+        <table class="display table table-bordered" id="clienti" >
             <thead>
             <tr>
                 <th data-field="nticket">Nº Ticket</th>
@@ -30,7 +29,6 @@
             </tr>
             </thead>
         </table>
-    </div>
 </div>
 
 
@@ -46,6 +44,7 @@
                 $('#clienti').bootstrapTable({
                     data: data
                 });
+                $(".fixed-table-loading").hide();
             },
             error: function(e) {
                 console.log(e.responseText);
