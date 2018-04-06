@@ -241,16 +241,16 @@ function enviarTicket(){
         {"Ticket": {
             "QueueID": "38",
             "PriorityID": "3",
-            "CustomerUser":"\"" +  $("#customer").select2("data")[0].text + "\"",
-            "Title": "Mensaje desde launcher de: " + $("#nombre").val() + "\"",
+            "CustomerUser": $("#customer").select2("data")[0].text,
+            "Title": "Mensaje desde launcher de: " + $("#nombre").val(),
             "StateID": "1",
-            "Type": "\"" + $("#tipo").select2("data")[0].text + "\""
+            "Type": $("#tipo").select2("data")[0].text
         },
                 "Article":
                     {
                         "ContentType":"text/plain; charset=utf8",
-                        "Subject": "Reclamo desde Launcher - Teléfono: " + $("#telefono").val() + "\"",
-                        "Body": "\"" + $("#comentario").val() + "\""
+                        "Subject": "Reclamo desde Launcher - Teléfono: " + $("#telefono").val(),
+                        "Body": $("#comentario").val()
                     }
             };
 
