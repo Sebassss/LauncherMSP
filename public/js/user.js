@@ -117,9 +117,11 @@ $.ajax({
         customers = data.customers;
         tipo = data.tipo;
 
-        fillSelects();
+
     }
 
+}).done(function(){
+    fillSelects();
 });
 
 function fillSelects(){

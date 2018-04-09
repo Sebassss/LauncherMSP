@@ -51,3 +51,51 @@ $app->get('/getTickets', function (Request $request, Response $response, array $
 
     return $DATA;
 });
+
+$app->get('/sendticket', function (Request $request, Response $response, array $args){
+
+    $url= 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456';
+
+     $data = array(
+        'Ticket' => array(
+            'QueueID' => 38,
+            'PriorityID'=> '3',
+            'CustomerUser'=> 'CAPS_ALFREDO_RIZO_ESPARZA',
+            'Title'=> 'Mensaje desde launcher de ivan',
+            'StateID'=> '1',
+            'Type'=> 'Capacitaciones  - Implementaciones'
+            
+        ),
+        'Article' => array(
+            'ContentType'=>'text/plain; charset=utf8',
+            'Subject'=> 'Reclamo desde Launcher',
+            'Body'=> 'comentario'
+        )
+    );
+
+    $content = json_encode($data);
+
+    $curl = curl_init($url);
+    curl_setopt($curl, CURLOPT_HEADER, false);
+    curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($curl, CURLOPT_HTTPHEADER,
+        array("Content-type: application/json"));
+    curl_setopt($curl, CURLOPT_POST, true);
+    curl_setopt($curl, CURLOPT_POSTFIELDS, $content);
+
+    $json_response = curl_exec($curl);
+
+    $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
+
+    if ( $status != 201 ) {
+        die("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
+    }
+
+
+    curl_close($curl);
+
+    $response = json_decode($json_response, true);
+
+    return $response;
+
+});
