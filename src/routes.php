@@ -54,22 +54,26 @@ $app->get('/getTickets', function (Request $request, Response $response, array $
 
 $app->get('/sendticket', function (Request $request, Response $response, array $args){
 
+
+    //return $response->withJson($a,200);
+
+
     $url= 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456';
 
      $data = array(
         'Ticket' => array(
             'QueueID' => 38,
             'PriorityID'=> '3',
-            'CustomerUser'=> 'CAPS_ALFREDO_RIZO_ESPARZA',
-            'Title'=> 'Mensaje desde launcher de ivan',
+            'CustomerUser'=> $request->getParam('customer'),
+            'Title'=> $request->getParam('title'),
             'StateID'=> '1',
-            'Type'=> 'Capacitaciones  - Implementaciones'
+            'Type'=> $request->getParam('type')
             
         ),
         'Article' => array(
             'ContentType'=>'text/plain; charset=utf8',
-            'Subject'=> 'Reclamo desde Launcher',
-            'Body'=> 'comentario'
+            'Subject'=> $request->getParam('subject'),
+            'Body'=> $request->getParam('body')
         )
     );
 
@@ -86,16 +90,17 @@ $app->get('/sendticket', function (Request $request, Response $response, array $
     $json_response = curl_exec($curl);
 
     $status = curl_getinfo($curl, CURLINFO_HTTP_CODE);
-
+/*
     if ( $status != 201 ) {
         die("Error: call to URL $url failed with status $status, response $json_response, curl_error " . curl_error($curl) . ", curl_errno " . curl_errno($curl));
     }
-
+*/
 
     curl_close($curl);
 
-    $response = json_decode($json_response, true);
+    //$response = json_decode($json_response, true);
 
-    return $response;
+    //return $json_response;
+    return $response->withJson(json_decode($json_response, true),200);
 
 });

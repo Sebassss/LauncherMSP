@@ -14,7 +14,7 @@ axx.gedoc =
 axx.siged =
     {
         title: "SiGeD",
-        body: "explicación",
+        body: "explicación de siged",
         url: "http://10.64.65.200/gedoc"
     };
 
@@ -22,41 +22,41 @@ axx.mesadeentrada =
     {
         title: "Mesa de Entrada",
         body: "explicación",
-        url: "http://10.64.65.200/gedoc"
+        url: "http://10.64.65.200/sistema"
     };
 
 axx.nutricion =
     {
         title: "Nutrición",
         body: "explicación",
-        url: "http://10.64.65.200/gedoc"
+        url: "http://10.64.65.200:81/nutricion/"
     };
 
 axx.regprof =
     {
         title: "Registro de profesionales",
         body: "explicación",
-        url: "http://10.64.65.200/gedoc"
+        url: "http://10.64.65.200/srproftest/"
     };
 
 axx.otrs =
     {
         title: "O.T.R.S.",
         body: "explicación",
-        url: "http://10.64.65.200/gedoc"
+        url: "http://10.64.65.200:84/otrs/"
     };
 
 axx.permisosinternet =
     {
         title: "Solicitud de permisos especiales de internet",
         body: "explicación",
-        url: "http://10.64.65.200/gedoc"
+        url: "http://10.2.0.1/formulario/pdf/01-Permisos.pdf"
     };
-axx.gmail =
+axx.email =
     {
-        title: "Gmail",
+        title: "Email oficial",
         body: "explicación",
-        url: "http://10.64.65.200/gedoc"
+        url: "https://webmail.sanjuan.gov.ar/owa/auth/logon.aspx?url=https://webmail.sanjuan.gov.ar/owa/&reason=0"
     };
 
 
@@ -238,7 +238,7 @@ function verificar(){
  */
 //envío de tickets
 function enviarTicket(){
-
+/*
     var data2send =
         {"Ticket": {
             "QueueID": "38",
@@ -253,27 +253,74 @@ function enviarTicket(){
                      "Body": $("#comentario").val()
                     }
             };
+*/
+    //console.dir(data2send)
 
-    console.dir(data2send)
+    var data2send = {};
+
+    data2send.CustomerUser = $("#customer").select2("data")[0].text;
+
+    data2send.Type = $("#tipo").select2("data")[0].text;
+
+    data2send.Title = "Ticket desde Launcher solicitado por: " + $("#nombre").val();
+
+    data2send.Body = " -- " + $("#comentario").val();
+
+    data2send.Subject = "Contacto: " + $("#telefono").val();
 
     $.ajax({
-        url: 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456',
-
+        //url: 'http://10.64.65.200:84/otrs/nph-genericinterface.pl/Webservice/bott/Ticket?UserLogin=LauncherMSP&Password=123456',
+        url: 'sendticket',
         contentType: 'application/json',
-        type: 'POST',
+        type: 'GET',
         dataType: 'json',
-        data: data2send,
+        data: {
+            customer: data2send.CustomerUser,
+            type: data2send.Type,
+            title: data2send.Title,
+            body: data2send.Body,
+            subject: data2send.Subject
+        },
+        beforeSend: function(){
+
+            $(".modal-title")
+                .empty()
+                .append('Espere un momento por favor..');
+
+            $(".modal-body")
+                .empty()
+                .append('Se está creando su solicitud...');
+
+            $(".btnmodal").hide();
+
+            $("#detailModal")
+                .modal('show');
+        },
         success: function(data){
-            console.log("ANDÓ!");
+
             console.log(data);
+
+            $(".modal-title")
+                .empty()
+                .append('Ticket creado correctamente.');
+
+            $(".modal-body")
+                .empty()
+                .append('Anote el número de su ticket: <b>' + data.TicketNumber + '</b>');
+
+            $(".btnmodal").show();
+
         },
         error: function(e){
+            console.log("Error en el acceso a la base de datos");
             console.log(e);
         },
         timeout: 12000
 
     });
 }
+
+
 
 //carga de noticias
 function proximaNoticia(){
@@ -327,7 +374,10 @@ function openModal(selector){
         .empty()
         .append(data.body);
 
-    $(".ir").click(function(){
+    $(".ir")
+        .text('Ingresar')
+        .unbind('click')
+        .click(function(){
         window.open(data.url,'_blank');
     });
 

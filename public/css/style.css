@@ -78,3 +78,12 @@ body {
     padding: 0px; /* Some padding */
     height: 50px;
 }
+
+#detailModal {
+    background-color: rgba(109,46,46,0.9);
+}
+
+.modal-box {
+    color: white;
+    background-color: #6d2e2e;
+}
