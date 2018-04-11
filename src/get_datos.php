@@ -94,7 +94,7 @@ function getTel(){
 
     $db = new MYSQL();
 
-    $consultaTelefonos = $db->Consulta("SELECT lugar, numero FROM tel_lugar tl JOIN tel_numero tn on tn.id = tl.id");
+    $consultaTelefonos = $db->Consulta("SELECT lugar, numero FROM tel_lugar tl JOIN tel_numero tn on tn.id = tl.id ");
 
     $x=0;
     $telefonos=  array();
@@ -117,7 +117,7 @@ function getLugares(){
 
     $db = new MYSQL();
 
-    $consultaLugares = $db->Consulta("SELECT id, lugar FROM tel_lugar");
+    $consultaLugares = $db->Consulta("SELECT id, lugar FROM tel_lugar ORDER BY lugar ASC");
 
     $x=0;
     $lugares=  array();

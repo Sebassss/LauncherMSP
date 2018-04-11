@@ -68,6 +68,7 @@ $(function(){
                         success: function(data){
                             console.log(data);
                             console.log("se agrega el número " + numero + " al lugar " + idlugar);
+                            updateTable();
                         }
 
                     });
@@ -90,6 +91,20 @@ function fillSearch(){
         data: telefonos
     });
 }*/
+
+function updateTable(){
+
+    $.ajax({
+        url: 'gettel',
+        dataType: 'json',
+        success: function(data){
+            telefonos = data;
+        }
+
+    }).done(function(){
+        fillTable();
+    });
+}
 
 function fillTable() {
 
