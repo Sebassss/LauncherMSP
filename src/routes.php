@@ -6,6 +6,7 @@ use Slim\Http\Response;
 //rutas de usuario
 
 include 'get_datos.php';
+include 'set_datos.php';
 
 // Routes
 
@@ -21,6 +22,7 @@ $app->add(function ($req, $res, $next) {
         ->withHeader('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE, OPTIONS');
 });
 
+//index
 $app->get('/', function (Request $request, Response $response, array $args) {
     // Sample log message
     //$this->logger->info("Slim-Skeleton '/' route");
@@ -29,6 +31,14 @@ $app->get('/', function (Request $request, Response $response, array $args) {
     return $this->renderer->render($response, 'index.phtml', $args);
 });
 
+//teléfonos útiles
+$app->get('/telefonos', function (Request $request, Response $response, array $args) {
+
+    return $this->renderer->render($response, 'telefonos.phtml', $args);
+});
+
+
+//trae los datos para rellenar los select2
 $app->get('/getdata', function (Request $request, Response $response, array $args){
 
     $DATA = getData();
@@ -36,6 +46,28 @@ $app->get('/getdata', function (Request $request, Response $response, array $arg
     return $DATA;
 });
 
+//trae números de teléfono
+$app->get('/gettel', function (Request $request, Response $response, array $args){
+
+    $DATA = getTel();
+
+    return $DATA;
+});
+//agrega nuevo número de teléfono
+$app->post('/gettel', function (Request $request, Response $response, array $args){
+
+    $id = $request->getParam('id');
+    $numero = $request->getParam('numero');
+
+    return setTel($id,$numero);
+});
+
+$app->get('/getlugares', function (Request $request, Response $response, array $args){
+
+    $DATA = getLugares();
+
+    return $DATA;
+});
 
 $app->get('/tickets', function (Request $request, Response $response, array $args) {
     // Sample log message
