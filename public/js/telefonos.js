@@ -51,7 +51,9 @@ $(function(){
 
                 $("#modal").modal('show');
 
-                $("#aceptar").click(function(){
+                $("#aceptar")
+                    .unbind('click')
+                    .click(function(){
 
                     var idlugar = $("#lugar").val();
                     var numero = $("#nuevoNumero").val();
