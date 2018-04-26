@@ -64,7 +64,7 @@ function getTickets(){
 
 
 
-    $consulta = $db->Consulta( "select t.tn as nticket,".
+    $consulta = $db->Consulta( "select t.id,concat(u.first_name, ', ', u.last_name) as user, t.tn as nticket,".
         "							 tp.name as prioridad,".
         "        		   date_format(t.create_time,'%d/%m/%Y %H:%i:%s') as fechahora,".
         "							 (select ta.a_from from article ta where ta.ticket_id = t.id limit 0,1) as oficina, ".
@@ -73,9 +73,10 @@ function getTickets(){
         "        			  from ticket t ".
         "        	inner join ticket_state ts on ts.id = t.ticket_state_id".
         "			    inner join ticket_priority tp on tp.id = t.ticket_priority_id".
+        "                inner join users u on u.id = t.user_id".
         "        where (ts.name = 'Nuevo' or ts.name = 'Abierto.') and  ".
         "        			 date_format(t.create_time, '%Y') = date_format(DATE(NOW()),'%Y') AND".
-        "        			 t.queue_id < 19 or t.queue_id > 37 order by t.create_time, t.ticket_priority_id ");
+        "        			 t.queue_id < 19 or t.queue_id > 37 order by  t.create_time  desc, ticket_priority_id asc");
 
     $x=0;
     $result=  array();

@@ -32,7 +32,8 @@ class Permiso extends  MySQL {
                SELECT IF(SUM(Consultar) >= 1, 1,0) as consultar,
                        IF(SUM(Agregar) >= 1, 1,0) as agregar,
                        IF(SUM(Editar) >= 1, 1,0) as editar,
-                       IF(SUM(Eliminar) >= 1, 1,0) as eliminar
+                       IF(SUM(Eliminar) >= 1, 1,0) as eliminar,
+                       IF(SUM(Exportar) >= 1, 1,0) as Exportar
                 FROM Tbl_PerfilesRecursos
                 WHERE RecursoID = '.(int)$recurso_id.'
                 AND PerfilID IN (

@@ -16,31 +16,99 @@
 <body>
 <div class="container-fluid">
 
-        <table class="display table table-bordered" id="clienti" >
-            <thead>
-            <tr>
-                <th data-field="nticket">Nº Ticket</th>
-                <th data-field="prioridad">Prioridad</th>
-                <th data-field="fechahora">Fecha y Hora</th>
-                <th data-field="oficina">Oficina</th>
-                <th data-field="motivo">Motivo</th>
-                <!--<th data-field="detalle">Detalle</th>-->
+    <table id="ttable" class="table table-hover table-dark no-wrap">
+        <thead>
+        <tr>
+            <th scope="col">Asignado a:</th>
+            <th scope="col">Fecha y Hora</th>
+            <th scope="col">Oficina</th>
+            <th scope="col">Motivo</th>
+            <th scope="col">Detalle</th>
+        </tr>
+        </thead>
+        <tbody>
 
-            </tr>
-            </thead>
-        </table>
+        </tbody>
+    </table>
 </div>
 
 
 <script type="text/javascript">
 
+    function loadTickets()
+    {
+        console.log("load");
+        $.ajax({
+            url: 'getTickets',
+            dataType: 'json',
+            success: function(data) {
+                //alert('done');
 
+                $('#ttable tbody').empty()
+
+                for (var i=0 ; i<data.length;i++) {
+
+                    var xclass ="";
+
+                    switch (data[i].prioridad)
+                    {
+                        case 'Muy Baja':
+                        {
+                            xclass = "bg-primary";
+                        }break;
+
+                        case 'Baja':
+                        {
+                            xclass = "bg-secondary";
+                        }break;
+
+                        case 'Normal':
+                        {
+                            xclass = "bg-info";
+                        }break;
+
+                        case 'Alta':
+                        {
+                            xclass = "bg-danger";
+                        }break;
+
+                        case 'Urgente':
+                        {
+                            xclass = "bg-danger";
+                        }break;
+
+                    }
+                    var tmp = '<tr>' +
+                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].user + '</a></th>' +
+                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].fechahora + '</a></th>' +
+                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].oficina.replace('"','').replace('"','').replace(',','') + '</a></th>' +
+                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].motivo + '</a></th>' +
+                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].detalle + '</a></th></tr>';
+
+                    $('#ttable tbody').append(tmp)
+                }
+
+            },
+            error: function(e) {
+                console.log(e.responseText);
+            }
+        });
+    }
+    $(document).ready(function(){
+
+        setInterval(function(){
+        loadTickets()
+        },5000)
+    });
+
+/*
     $(document).ready(function(){
         $.ajax({
             url: 'getTickets',
             dataType: 'json',
             success: function(data) {
                 //alert('done');
+                $('#clienti thead').addClass("bg-warning");
                 $('#clienti').bootstrapTable({
                     data: data
                 });
@@ -51,6 +119,7 @@
             }
         });
     });
+    */
 </script>
 </body>
 
