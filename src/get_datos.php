@@ -96,7 +96,7 @@ function getTickets(){
         "                inner join users u on u.id = t.user_id".
         "        where (ts.name = 'Nuevo' or ts.name = 'Abierto.') and  ".
         "        			 date_format(t.create_time, '%Y') = date_format(DATE(NOW()),'%Y') AND".
-        "        			 t.queue_id < 19 or t.queue_id > 37 order by  t.id desc,ticket_priority_id desc");
+        "        			 (t.queue_id < 19 or t.queue_id > 37) and t.queue_id!=3 order by  t.id desc,ticket_priority_id desc");
 
     $x=0;
     $result=  array();
