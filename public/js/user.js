@@ -59,6 +59,13 @@ axx.email =
         url: "https://webmail.sanjuan.gov.ar/owa/auth/logon.aspx?url=https://webmail.sanjuan.gov.ar/owa/&reason=0"
     };
 
+axx.centrosalud =
+    {
+        title: "Centros de Salud",
+        body: "Información de todos los centros de Salud  de San Juan.",
+        url: "http://10.64.65.200/csmap"
+
+    };
 
 var noticias = [];
 
