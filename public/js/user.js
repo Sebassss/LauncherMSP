@@ -6,7 +6,7 @@ var axx = [];
 axx.gedoc =
     {
         title: "Sistema de Gestión de Documentos",
-        body: "El sistema GeDoc le permite tirar turnos con solamente un par de clicks",
+        body: "A continuación usted va a ingresar a GeDoc",
         url: "http://10.64.65.200/gedoc"
 
     };
@@ -14,48 +14,48 @@ axx.gedoc =
 axx.siged =
     {
         title: "SiGeD",
-        body: "explicación de siged",
+        body: "Este Sistema debe ser abierto desde Internet Explorer.",
         url: "http://10.64.65.200/gedoc"
     };
 
 axx.mesadeentrada =
     {
         title: "Mesa de Entrada",
-        body: "explicación",
+        body: "Este Sistema debe ser abierto desde Internet Explorer.",
         url: "http://10.64.65.200/sistema"
     };
 
 axx.nutricion =
     {
         title: "Nutrición",
-        body: "explicación",
+        body: "Sistema de la división Nutricion.",
         url: "http://10.64.65.200:81/nutricion/"
     };
 
 axx.regprof =
     {
         title: "Registro de profesionales",
-        body: "explicación",
+        body: "Sistema de Registro de Profesionales.",
         url: "http://10.64.65.200/srproftest/"
     };
 
 axx.otrs =
     {
         title: "O.T.R.S.",
-        body: "explicación",
+        body: "Sistema de gestión de Incidentes.",
         url: "http://10.64.65.200:84/otrs/"
     };
 
 axx.permisosinternet =
     {
         title: "Solicitud de permisos especiales de internet",
-        body: "explicación",
+        body: "Complete el formulario a continuacíon.",
         url: "http://10.2.0.1/formulario/pdf/01-Permisos.pdf"
     };
 axx.email =
     {
         title: "Email oficial",
-        body: "explicación",
+        body: "Ingreso al correo oficial de Salud Pública.",
         url: "https://webmail.sanjuan.gov.ar/owa/auth/logon.aspx?url=https://webmail.sanjuan.gov.ar/owa/&reason=0"
     };
 
@@ -321,7 +321,7 @@ function enviarTicket(){
         },
         success: function(data){
 
-            console.log(data);
+            //console.log(data);
 
             $(".modal-title")
                 .empty()
@@ -364,15 +364,15 @@ function getLauncher()
             }
 
 
-            console.dir(noticias);
+            //console.dir(noticias);
 
 
 
 
 
             $("#noticias").animateCss('fadeOutUp',function () {
-                console.log("aca")
-                console.dir(noticias);
+                //console.log("aca")
+                //console.dir(noticias);
                 if(noticias[contadorNoticias] !='undefined') {
                     $("#titulonoticia").text(noticias[contadorNoticias].titulo);
                     $("#textonoticia").text(noticias[contadorNoticias].texto);
