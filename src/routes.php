@@ -69,6 +69,13 @@ $app->get('/getlugares', function (Request $request, Response $response, array $
     return $DATA;
 });
 
+$app->get('/getLauncherNews', function (Request $request, Response $response, array $args){
+
+    $DATA = getLauncherNews();
+
+    return $DATA;
+});
+
 $app->get('/tickets', function (Request $request, Response $response, array $args) {
     // Sample log message
     //$this->logger->info("Slim-Skeleton '/' route");

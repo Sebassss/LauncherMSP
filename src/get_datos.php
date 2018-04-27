@@ -58,6 +58,26 @@ function getData(){
 
 
 
+function getLauncherNews(){
+    $db = new MYSQL();
+
+
+
+    $consulta = $db->Consulta( "select id, fechahora, titulo, detalle, orden from launcher_news where visible = 1 order by orden asc");
+
+    $x=0;
+    $result=  array();
+
+    while($row = $db->fetch_array($consulta))
+    {
+        $result[$x] = $row;
+        $x++;
+    }
+
+
+    return json_encode($result);
+}
+
 function getTickets(){
 
     $db = new MYSQL();
@@ -76,7 +96,7 @@ function getTickets(){
         "                inner join users u on u.id = t.user_id".
         "        where (ts.name = 'Nuevo' or ts.name = 'Abierto.') and  ".
         "        			 date_format(t.create_time, '%Y') = date_format(DATE(NOW()),'%Y') AND".
-        "        			 t.queue_id < 19 or t.queue_id > 37 order by  t.create_time  desc, ticket_priority_id asc");
+        "        			 t.queue_id < 19 or t.queue_id > 37 order by  t.id desc,ticket_priority_id desc");
 
     $x=0;
     $result=  array();

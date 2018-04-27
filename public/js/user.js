@@ -60,22 +60,12 @@ axx.email =
     };
 
 
-const noticias = [
-    {
-        titulo: "Primer título",
-        texto: "primer texto de prueba",
-        url: "google.com"
-    },
-    {
-        titulo: "Segundo título",
-        texto: "segundo texto"
-    }
-];
+var noticias = [];
 
 //contador de noticias
 var contadorNoticias = 0;
 //intervalo de cambio de noticia
-var intervalo = setInterval(proximaNoticia, 8000);
+//var intervalo = setInterval(proximaNoticia, 8000);
 
 //animate.css
 $.fn.extend({
@@ -180,7 +170,17 @@ $(function(){
         AddToFavorite("gedoc.com","El sistema de turnos caídos");
     });
 
+    $(document).ready(function(){
+
+        getLauncher();
+
+        setInterval(function(){
+            getLauncher()
+        },25000)
+    });
+
 });
+
 
 function verificar(){
 
@@ -345,27 +345,56 @@ function enviarTicket(){
 
 
 
-//carga de noticias
-function proximaNoticia(){
 
-    $("#noticias").animateCss('fadeOutUp',function () {
 
-        $("#titulonoticia").text(noticias[contadorNoticias].titulo);
-        $("#textonoticia").text(noticias[contadorNoticias].texto);
+function getLauncher()
+{
+    $.ajax({
+        url: 'getLauncherNews',
+        dataType: 'json',
+        success: function(data) {
+            //alert('done');
+            noticias = [];
 
-        $("#noticias").animateCss('fadeInDown', function () {
+            for (var i = 0; i < data.length; i++) {
 
-        });
+                //$("#titulonoticia").text(data[i].titulo);
+                //$("#textonoticia").text(data[i].detalle);
+               noticias.push({"titulo" : data[i].titulo, "texto" : data[i].detalle })
+            }
 
+
+            console.dir(noticias);
+
+
+
+
+
+            $("#noticias").animateCss('fadeOutUp',function () {
+                console.log("aca")
+                console.dir(noticias);
+                if(noticias[contadorNoticias] !='undefined') {
+                    $("#titulonoticia").text(noticias[contadorNoticias].titulo);
+                    $("#textonoticia").text(noticias[contadorNoticias].texto);
+                }
+                $("#noticias").animateCss('fadeInDown', function () {
+                    contadorNoticias++;
+                });
+
+            });
+            if(contadorNoticias === noticias.length) contadorNoticias = 0;
+
+
+
+
+
+
+        },
+        error: function(e) {
+            console.log(e.responseText);
+        }
     });
-
-
-    contadorNoticias ++;
-
-    if(contadorNoticias === noticias.length) contadorNoticias = 0;
-
 }
-
 //https://helloacm.com/add-to-favorite-using-javascript/
 var AddToFavorite = function(url, title) {
     var ua = navigator.userAgent.toLowerCase();
