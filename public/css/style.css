@@ -1,6 +1,12 @@
 body {
     background-color: #ffeadc;
     font-size: 1.3rem;
+
+}
+
+.container-fluid{
+    padding-left: 0px;
+    padding-right: 0px;
 }
 .mainbannerrow {
    background-color: #2e6167 !important;
