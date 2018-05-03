@@ -55,36 +55,36 @@
                     {
                         case 'Muy Baja':
                         {
-                            xclass = "bg-primary";
+                            xclass = "bg-primary textBG";
                         }break;
 
                         case 'Baja':
                         {
-                            xclass = "bg-secondary";
+                            xclass = "bg-secondary textBG";
                         }break;
 
                         case 'Normal':
                         {
-                            xclass = "bg-info";
+                            xclass = "bg-success textBG";
                         }break;
 
                         case 'Alta':
                         {
-                            xclass = "bg-danger";
+                            xclass = "bg-warning  blink";
                         }break;
 
                         case 'Urgente':
                         {
-                            xclass = "bg-danger";
+                            xclass = "bg-danger  blink ";
                         }break;
 
                     }
-                    var tmp = '<tr>' +
-                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].user + '</a></th>' +
-                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].fechahora + '</a></th>' +
-                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].oficina.replace('"','').replace('"','').replace(',','') + '</a></th>' +
-                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].motivo + '</a></th>' +
-                        '<th class="'+ xclass +'"><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].detalle + '</a></th></tr>';
+                    var tmp = '<tr class="'+ xclass +'">' +
+                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].user + '</a></th>' +
+                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].fechahora + '</a></th>' +
+                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].oficina.replace('"','').replace('"','').replace(',','') + '</a></th>' +
+                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].motivo + '</a></th>' +
+                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].detalle + '</a></th></tr>';
 
                     $('#ttable tbody').append(tmp)
                 }

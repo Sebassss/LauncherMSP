@@ -1,8 +1,43 @@
 body {
     background-color: #ffeadc;
     font-size: 1.3rem;
-
 }
+*{
+    text-transform: uppercase !important;
+}
+
+/**/
+.blink th.t {
+    border: 1px solid red;
+    width: 50px;
+}
+
+.blink th.top {
+    border-bottom: 1px dashed black;
+}
+.blink th.left {
+    border-right: 0px dashed black;
+}
+.blink th.right {
+    border-left: 0px dashed black;
+}
+.blink th.bottom {
+    border-top: 1px dashed black;
+}
+.blink th.middle {
+    border: 0px dashed black;
+}
+
+.blink th{
+    -webkit-animation: pulse-border 2s infinite;
+}
+
+@-webkit-keyframes pulse-border {
+    from, to { box-shadow: 0 0 0 0 black;}
+    50% { box-shadow: 0 0 0 2px black; }
+}
+/**/
+
 
 .container-fluid{
     padding-left: 0px;
@@ -14,7 +49,8 @@ body {
 }
 
 a, a:hover{
-    color: #fff;
+    text-transform: uppercase !important;
+    color: #000;
 }
 
 .mainbanner {
