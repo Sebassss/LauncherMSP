@@ -7,28 +7,28 @@ body {
 }
 
 /**/
-.blink th.t {
+.blink td {
     border: 1px solid red;
     width: 50px;
 }
 
-.blink th.top {
+.blink td.top {
     border-bottom: 1px dashed black;
 }
-.blink th.left {
+.blink td.left {
     border-right: 0px dashed black;
 }
-.blink th.right {
+.blink td.right {
     border-left: 0px dashed black;
 }
-.blink th.bottom {
+.blink td.bottom {
     border-top: 1px dashed black;
 }
-.blink th.middle {
+.blink td.middle {
     border: 0px dashed black;
 }
 
-.blink th{
+.blink td{
     -webkit-animation: pulse-border 2s infinite;
 }
 

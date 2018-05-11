@@ -67,6 +67,14 @@ axx.centrosalud =
 
     };
 
+axx.siged =
+    {
+        title: "SIGED",
+        body: "Sistema de gestión de expedientes: iniciar con internet explorer.",
+        url: "http://siif.sanjuan.gob.ar/"
+
+    };
+
 var noticias = [];
 
 //contador de noticias

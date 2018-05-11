@@ -80,11 +80,11 @@
 
                     }
                     var tmp = '<tr class="'+ xclass +'">' +
-                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].user + '</a></th>' +
-                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].fechahora + '</a></th>' +
-                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].oficina.replace('"','').replace('"','').replace(',','') + '</a></th>' +
-                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].motivo + '</a></th>' +
-                        '<th ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].detalle + '</a></th></tr>';
+                        '<td ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].user + '</a></td>' +
+                        '<td ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].fechahora + '</a></td>' +
+                        '<td ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].oficina.replace('"','').replace('"','').replace(',','') + '</a></td>' +
+                        '<td ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].motivo + '</a></td>' +
+                        '<td ><a target="_blank" href="http://otrsminsalud.sanjuan.gob.ar/otrs/index.pl?Action=AgentTicketZoom;TicketID='+data[i].id+'">' + data[i].detalle + '</a></td></tr>';
 
                     $('#ttable tbody').append(tmp)
                 }
