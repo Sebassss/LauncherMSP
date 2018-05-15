@@ -389,8 +389,8 @@ function getLauncher()
                 //console.log("aca")
                 //console.dir(noticias);
                 if(noticias[contadorNoticias] !='undefined') {
-                    $("#titulonoticia").text(noticias[contadorNoticias].titulo);
-                    $("#textonoticia").text(noticias[contadorNoticias].texto);
+                    $("#titulonoticia").html(noticias[contadorNoticias].titulo);
+                    $("#textonoticia").html(noticias[contadorNoticias].texto);
                 }
                 $("#noticias").animateCss('fadeInDown', function () {
                     contadorNoticias++;
